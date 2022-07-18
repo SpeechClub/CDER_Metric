@@ -26,7 +26,13 @@
 # AUTHORS
 # Hervé BREDIN - http://herve.niderb.fr
 
-"""Metrics for diarization"""
+# AUTHORS
+# Gaofeng Cheng     chenggaofeng@hccl.ioa.ac.cn     (Institute of Acoustics, Chinese Academy of Science)
+# Yifan Chen        chenyifan@hccl.ioa.ac.cn        (Institute of Acoustics, Chinese Academy of Science)
+# Runyan Yang       yangrunyan@hccl.ioa.ac.cn       (Institute of Acoustics, Chinese Academy of Science)
+# Qingxuan Li       liqx20@mails.tsinghua.edu.cn    (Tsinghua University)
+
+
 from typing import Optional, Dict, TYPE_CHECKING
 
 import numpy as np

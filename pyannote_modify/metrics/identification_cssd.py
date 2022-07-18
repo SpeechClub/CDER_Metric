@@ -25,6 +25,14 @@
 
 # AUTHORS
 # Hervé BREDIN - http://herve.niderb.fr
+
+# AUTHORS
+# Gaofeng Cheng     chenggaofeng@hccl.ioa.ac.cn     (Institute of Acoustics, Chinese Academy of Science)
+# Yifan Chen        chenyifan@hccl.ioa.ac.cn        (Institute of Acoustics, Chinese Academy of Science)
+# Runyan Yang       yangrunyan@hccl.ioa.ac.cn       (Institute of Acoustics, Chinese Academy of Science)
+# Qingxuan Li       liqx20@mails.tsinghua.edu.cn    (Tsinghua University)
+
+
 from typing import Optional
 
 from pyannote.core import Annotation, Timeline
@@ -145,8 +153,8 @@ class CSSDErrorRate(UEMSupportMixin, BaseMetric):
                 continue
             matched = False
             for ref_seg in reference_spk_label[label]:
-                jiaoji = max(0,min(ref_seg.end,hyp_seg.end) - max(ref_seg.start,hyp_seg.start))
-                overlap_rate = jiaoji / (ref_seg.duration + hyp_seg.duration - jiaoji)
+                intersection = max(0,min(ref_seg.end,hyp_seg.end) - max(ref_seg.start,hyp_seg.start))
+                overlap_rate = intersection / (ref_seg.duration + hyp_seg.duration - intersection)
                 if overlap_rate >= 0.5: # eta:
                     matched_spk_label[label].append((overlap_rate,ref_seg,hyp_seg))
                     matched = True
@@ -172,69 +180,13 @@ class CSSDErrorRate(UEMSupportMixin, BaseMetric):
                 tot_err+=len(ref_segs)
         error_rate = tot_err / tot_ref
 
-
-
-
-
-
-
-        #
-        # for item in hypothesis.itertracks(yield_label=True):
-        #     print(item)
-        #     print(1)
-        #
         detail = self.init_components()
-        #
-        # if collar is None:
-        #     collar = self.collar
-        # if skip_overlap is None:
-        #     skip_overlap = self.skip_overlap
-        #
-        # R, H, common_timeline = self.uemify(
-        #     reference, hypothesis, uem=uem,
-        #     collar=collar, skip_overlap=skip_overlap,
-        #     returns_timeline=True)
-        #
-        # # loop on all segments
-        # for segment in common_timeline:
-        #     # segment duration
-        #     duration = segment.duration
-        #
-        #     # list of IDs in reference segment
-        #     r = R.get_labels(segment, unique=False)
-        #
-        #     # list of IDs in hypothesis segment
-        #     h = H.get_labels(segment, unique=False)
-        #
-        #     counts, _ = self.matcher_(r, h)
-        #
-        #     detail[IER_TOTAL] += duration * counts[IER_TOTAL]
-        #     detail[IER_CORRECT] += duration * counts[IER_CORRECT]
-        #     detail[IER_CONFUSION] += duration * counts[IER_CONFUSION]
-        #     detail[IER_MISS] += duration * counts[IER_MISS]
-        #     detail[IER_FALSE_ALARM] += duration * counts[IER_FALSE_ALARM]
         detail[IER_TOTAL] = error_rate
-        # detail[IER_CORRECT] = 0
-        # detail[IER_CONFUSION] = 0
-        # detail[IER_MISS] = 0
-        # detail[IER_FALSE_ALARM] = 0
+
         return detail
 
     def compute_metric(self, detail):
 
-        # numerator = 1. * (
-        #         self.confusion * detail[IER_CONFUSION] +
-        #         self.false_alarm * detail[IER_FALSE_ALARM] +
-        #         self.miss * detail[IER_MISS]
-        # )
-        # denominator = 1. * detail[IER_TOTAL]
-        # if denominator == 0.:
-        #     if numerator == 0:
-        #         return 0.
-        #     else:
-        #         return 1.
-        # else:
-        #     return numerator / denominator
         return detail[IER_TOTAL]
 
 
