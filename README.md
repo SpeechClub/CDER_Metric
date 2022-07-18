@@ -1,7 +1,7 @@
 # CSSD-Metric (Conversational Short-phrase Speaker Diarization Metric)
 
 ***
-### Usage:
+## Usage
 
 Both the reference and hypothesis(system) should be saved in RTTM (Rich Transcription Time Marked) format.
 
