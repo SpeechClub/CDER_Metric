@@ -53,9 +53,9 @@ def main():
     results = []
 
     for key, val in ref.items():
-        hypothesis = val[1]
+        reference = val[1]
         # if b key
-        reference = hyp[key][1]
+        hypothesis = hyp[key][1]
 
         result = CSSDER(reference, hypothesis)
         print(key, "CSSDER = {0:.3f}".format(result))

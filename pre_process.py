@@ -38,9 +38,7 @@ import numpy as np
 
 
 def rttm_read_cder(rttm_path):
-    # a = rttm_read('1.rttm')
     a = rttm_read(rttm_path)
-    Annotation_list = []
     for key, val in a.items():
         annotation = Annotation(uri=key, modality='speaker')
         changepoints = {}
@@ -60,7 +58,6 @@ def rttm_read_cder(rttm_path):
         for k, v in changepoints.items():
             v.sort()
 
-        # assert len(speakers) == 2
         for spk in speakers:
             other_spk = speakers.copy()
             other_spk.remove(spk)
@@ -92,8 +89,6 @@ def rttm_read_cder(rttm_path):
                 annotation[Segment(changepoints[spk + '_st'][i], changepoints[spk + '_end'][i + step - 1])] = spk
                 i = i + step
         a[key] = [val[0], annotation]
-        Annotation_list.append(annotation)
-    # return Annotation_list
     return a
 
 
@@ -101,8 +96,8 @@ def main():
     a = rttm_read_cder('1.rttm')
     b = rttm_read_cder('2.rttm')
 
-    diarizationErrorRate = DiarizationErrorRate()
-    result = diarizationErrorRate(a, b, uem=Segment(0, 40))
+    diarization_error_rate = DiarizationErrorRate()
+    result = diarization_error_rate(a, b, uem=Segment(0, 40))
     print("DER = {0:.3f}".format(result))
 
     return 0
