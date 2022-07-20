@@ -54,14 +54,15 @@ def main():
 
     for key, val in ref.items():
         reference = val[1]
-        # if b key
-        hypothesis = hyp[key][1]
-
-        result = CSSDER(reference, hypothesis)
-        print(key, "CSSDER = {0:.3f}".format(result))
+        if key not in hyp:
+            result = 1.0
+        else:
+            hypothesis = hyp[key][1]
+            result = CSSDER(reference, hypothesis)
+        print(key, "CDER = {0:.3f}".format(result))
         results.append(result)
 
-    print("Avg CSSDER : {0:.3f}", np.mean(results))
+    print("Avg CDER : {0:.3f}".format(np.mean(results)))
 
 
 if __name__ == "__main__":
