@@ -1,4 +1,4 @@
-# CSSD-Metric (Conversational Short-phrase Speaker Diarization Metric)
+# CDER-Metric (Conversational Diarization Error Rate Metric)
 
 - [Contents](#contents)
     - [Description](#description)
@@ -34,7 +34,7 @@ pyannote.core
 ***
 ## [Detail](#detail)
 
-For CDER (Conversational Short-phrase Speaker Diarization Error Rate) calculation, we will firstly merge the utterances from the same person. For example, assuming $A_i$ represents the i-th utterance from speaker $A$, and $NS$ represents non-speech segments, $A_1,NS,A_2,NS,B_1,A_3,A_4,B_2,A_5,C_1$ will be merge to $A_1^{'},B_1^{'},A_3^{'},B_2^{'},A_5^{'},C_1^{'}$. The merged utterance ($A_1^{'}$) would preserve the timestamps of the start time of the first utterances ($A_1$) and the end time of the last utterances ($A_2$). Then, CDER is calculated by the following algorithm.
+For CDER (Conversational Diarization Error Rate) calculation, we will firstly merge the utterances from the same person. For example, assuming $A_i$ represents the i-th utterance from speaker $A$, and $NS$ represents non-speech segments, $A_1,NS,A_2,NS,B_1,A_3,A_4,B_2,A_5,C_1$ will be merge to $A_1^{'},B_1^{'},A_3^{'},B_2^{'},A_5^{'},C_1^{'}$. The merged utterance ($A_1^{'}$) would preserve the timestamps of the start time of the first utterances ($A_1$) and the end time of the last utterances ($A_2$). Then, CDER is calculated by the following algorithm.
 
 <div align=center>
 <img src="image/cssd_algo.png" width="700px">
@@ -78,7 +78,9 @@ The relationship between CDER and DER on the speaker diarization result of [Magi
 ***
 ## [Citation](#contents)
 
-If you find this code useful in your research, please kindly consider citing our paper:
+If you use cder in your paper，please kindly consider citing our upcoming CDER description paper (will appear in iscslp 2022).
+
+If you use MagicData-RAMC dataset in your research, please kindly consider citing our paper:
 
     @article{yang2022open,
     title={Open Source MagicData-RAMC: A Rich Annotated Mandarin Conversational (RAMC) Speech Dataset},
