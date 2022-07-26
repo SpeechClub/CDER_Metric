@@ -55,7 +55,8 @@ def main():
     for key, val in ref.items():
         reference = val[1]
         if key not in hyp:
-            result = 1.0
+            print("Warning:", key, "is missed!")
+            continue
         else:
             hypothesis = hyp[key][1]
             result = CSSDER(reference, hypothesis)

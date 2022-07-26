@@ -72,9 +72,11 @@ def rttm_read_cder(rttm_path):
                     for spk_o in other_spk:
                         while pos[spk_o] < len(changepoints[spk_o + '_st']):
                             if changepoints[spk_o + '_end'][pos[spk_o]] <= changepoints[spk + '_st'][i]:
+                            # if changepoints[spk_o + '_end'][pos[spk_o]] <= changepoints[spk + '_end'][i]:
                                 pos[spk_o] += 1
                                 continue
                             if changepoints[spk_o + '_st'][pos[spk_o]] >= changepoints[spk + '_end'][i + step]:
+                            # if changepoints[spk_o + '_st'][pos[spk_o]] >= changepoints[spk + '_st'][i + step]:
                                 break
                             else:
                                 flag = 1

@@ -197,9 +197,9 @@ class UEMSupportMixin:
             extent = r_extent | h_extent
             uem = Timeline(segments=[extent] if extent else [],
                            uri=reference.uri)
-            warnings.warn(
-                "'uem' was approximated by the union of 'reference' "
-                "and 'hypothesis' extents.")
+            # warnings.warn(
+            #     "'uem' was approximated by the union of 'reference' "
+            #     "and 'hypothesis' extents.")
 
         # extrude collars (and overlap regions) from uem
         uem = self.extrude(uem, reference, collar=collar,
