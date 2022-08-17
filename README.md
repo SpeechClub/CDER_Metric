@@ -34,10 +34,10 @@ pyannote.core
 ***
 ## [Detail](#detail)
 
-For CDER (Conversational Diarization Error Rate) calculation, we will firstly merge the utterances from the same person. For example, assuming $A_i$ represents the i-th utterance from speaker $A$, and $NS$ represents non-speech segments, $A_1,NS,A_2,NS,B_1,A_3,A_4,B_2,A_5,C_1$ will be merge to $A_1^{'},B_1^{'},A_3^{'},B_2^{'},A_5^{'},C_1^{'}$. The merged utterance ($A_1^{'}$) would preserve the timestamps of the start time of the first utterances ($A_1$) and the end time of the last utterances ($A_2$). Then, CDER is calculated by the following algorithm.
+For CDER (Conversational Diarization Error Rate) calculation, we will firstly merge the utterances from the same person. For example, assuming $A_i$ represents the i-th utterance from speaker $A$, and $NS$ represents non-speech segments, $A_1,NS,A_2,NS,B_1,A_3,A_4,B_2,A_5,C_1$ will be merge to $A_1^{'},B_1^{'},A_3^{'},B_2^{'},A_5^{'},C_1^{'}$. The merged utterance ($A_1^{'}$) would preserve the timestamps of the start time of the first utterances ($A_1$) and the end time of the last utterances ($A_2$). Then, we will match each reference utterance to a hypothesis utterance. And we will compare the reference utterance with the matched hypothesis utterance to judge whether the prediction is correct or wrong. Finally we will calculate the CDER. The more specific algorithm is following.
 
 <div align=center>
-<img src="image/cssd_algo.png" width="700px">
+<img src="image/cssd_algo.png" width="1000px">
 </div>
 
 ***
