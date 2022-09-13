@@ -56,7 +56,7 @@ def main():
     for key, val in ref.items():
         reference = val[1]
         if key not in hyp:
-            print("Error:", key, "is missed!")
+            print("Warning:", key, "is missed!")
             flag = 0
             continue
         else:
@@ -67,6 +67,8 @@ def main():
 
     if flag:
         print("Avg CDER : {0:.3f}".format(np.mean(results)))
+    else:
+        print("Avg CDER : Error!")
 
 
 if __name__ == "__main__":
