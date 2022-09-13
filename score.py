@@ -52,10 +52,12 @@ def main():
     CSSDER = CSSDErrorRate()
     results = []
 
+    flag = 1
     for key, val in ref.items():
         reference = val[1]
         if key not in hyp:
-            print("Warning:", key, "is missed!")
+            print("Error:", key, "is missed!")
+            flag = 0
             continue
         else:
             hypothesis = hyp[key][1]
@@ -63,7 +65,8 @@ def main():
         print(key, "CDER = {0:.3f}".format(result))
         results.append(result)
 
-    print("Avg CDER : {0:.3f}".format(np.mean(results)))
+    if flag:
+        print("Avg CDER : {0:.3f}".format(np.mean(results)))
 
 
 if __name__ == "__main__":
